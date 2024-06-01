@@ -1,0 +1,70 @@
+@PORT = 3000
+
+@HOST = http://localhost:{{PORT}}
+
+###AUTORES
+GET {{HOST}}/api/autores
+Authorization: API-KEY
+###
+GET {{HOST}}/api/autores/5
+Authorization: API-KEY
+###
+POST {{HOST}}/api/autores
+Authorization: API-KEY
+Content-Type: application/json
+
+{
+    "nombre": "Marisol",
+    "email": "marisol@gmail.com",
+    "imagen": "marisol.jpg"
+}
+###
+PUT {{HOST}}/api/autores/16
+Authorization: API-KEY
+Content-Type: application/json
+
+{
+    "nombre": "PacienteEditado",
+    "email": "ApellidosEditados",
+    "imagen": "2000-04-23"
+}
+
+###
+DELETE {{HOST}}/api/autores/3
+Authorization: API-KEY
+
+
+###POSTS
+GET {{HOST}}/api/posts
+Authorization: API-KEY
+###
+GET {{HOST}}/api/posts/7
+Authorization: API-KEY
+###
+POST {{HOST}}/api/posts
+Authorization: API-KEY
+Content-Type: application/json
+
+{
+    "titulo": "Marisol",
+    "descripcion": "marisol@gmail.com",
+    "fecha_creacion": "marisol.jpg",
+    "categoria": "marisol.jpg",
+    "autor": "marisol.jpg"
+}
+###
+PUT {{HOST}}/api/posts/16
+Authorization: API-KEY
+Content-Type: application/json
+
+{
+    "titulo": "Marisol",
+    "descripcion": "marisol@gmail.com",
+    "fecha_creacion": "marisol.jpg",
+    "categoria": "marisol.jpg",
+    "autor": "marisol.jpg"
+}
+
+###
+DELETE {{HOST}}/api/posts/3
+Authorization: API-KEY
