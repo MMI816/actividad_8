@@ -40,6 +40,12 @@ Authorization: API-KEY
 ###
 GET {{HOST}}/api/posts/3
 Authorization: API-KEY
+
+
+### posts por autor
+GET {{HOST}}/api/posts/autor/2
+Authorization: API-KEY
+
 ###
 POST {{HOST}}/api/posts
 Authorization: API-KEY

@@ -1,4 +1,6 @@
 const Post = require("../models/post.model");
+const Autor = require("../models/autor.model");
+const { get } = require("../routes/api/autores");
 
 const getAllPosts = async (req, res, next) => {
   try {
@@ -16,6 +18,15 @@ const getPostById = async (req, res, next) => {
       return res.status(404).json({ error: "El post no existe" });
     }
     res.json(post);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getPostsByAutor = async (req, res, next) => {
+  try {
+    const [result] = await Post.selectPostsByAutor(req.params.autor_id);
+    res.json(result);
   } catch (err) {
     next(err);
   }
@@ -72,5 +83,6 @@ module.exports = {
   createPost,
   updatePost,
   deletePost,
-  getPostById,
+    getPostById,
+  getPostsByAutor
 };

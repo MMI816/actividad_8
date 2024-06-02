@@ -1,4 +1,5 @@
 const Autor = require("../models/autor.model");
+const { get } = require("../routes/api/autores");
 
 const getAllAutores = async (req, res, next) => {
   try {
@@ -9,7 +10,7 @@ const getAllAutores = async (req, res, next) => {
   }
 };
     
-    
+
 const getAutorById = async (req, res, next) => {
   try {
     const [result] = await Autor.selectById(req.params.autor_id);

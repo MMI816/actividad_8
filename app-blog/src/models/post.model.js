@@ -1,3 +1,4 @@
+
 // Funciones con las queries que lanzamos contra la tabla posts
 
 const selectAll = () => {
@@ -51,6 +52,16 @@ const updateById = (
   );
 };
 
+const selectPostsByAutor = (autor_id) => {
+  return db.query(
+    `SELECT p.*, a.nombre AS nombre_autor, a.email AS email_autor
+     FROM posts AS p
+     INNER JOIN autores AS a ON p.autor_id = a.id
+     WHERE p.autor_id = ?`,
+    [autor_id]
+  );
+};
+
 const deleteById = (post_id) => {
   return db.query("DELETE FROM posts WHERE id = ?", [post_id]);
 };
@@ -60,5 +71,6 @@ module.exports = {
   selectById,
   insert,
   updateById,
-  deleteById,
+    deleteById,
+  selectPostsByAutor
 };

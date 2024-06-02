@@ -30,6 +30,8 @@ const deleteById = (autor_id) => {
   return db.query("DELETE FROM autores WHERE id = ?", [autor_id]);
 };
 
+
+
 module.exports = {
   selectAll,
   selectById,
