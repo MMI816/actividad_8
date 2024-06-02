@@ -6,7 +6,7 @@
 GET {{HOST}}/api/autores
 Authorization: API-KEY
 ###
-GET {{HOST}}/api/autores/5
+GET {{HOST}}/api/autores/2
 Authorization: API-KEY
 ###
 POST {{HOST}}/api/autores
@@ -14,23 +14,23 @@ Authorization: API-KEY
 Content-Type: application/json
 
 {
-    "nombre": "Marisol",
-    "email": "marisol@gmail.com",
-    "imagen": "marisol.jpg"
+    "nombre": "Marta Mendoza",
+    "email": "marta.mendoza@example.com",
+    "imagen": "autora3.jpg"
 }
 ###
-PUT {{HOST}}/api/autores/16
+PUT {{HOST}}/api/autores/2
 Authorization: API-KEY
 Content-Type: application/json
 
 {
-    "nombre": "PacienteEditado",
-    "email": "ApellidosEditados",
-    "imagen": "2000-04-23"
+    "nombre": "AutorEditado",
+    "email": "emailEditado@example.com",
+    "imagen": "imagen.jpg"
 }
 
 ###
-DELETE {{HOST}}/api/autores/3
+DELETE {{HOST}}/api/autores/5
 Authorization: API-KEY
 
 
@@ -38,7 +38,7 @@ Authorization: API-KEY
 GET {{HOST}}/api/posts
 Authorization: API-KEY
 ###
-GET {{HOST}}/api/posts/7
+GET {{HOST}}/api/posts/3
 Authorization: API-KEY
 ###
 POST {{HOST}}/api/posts
@@ -46,25 +46,25 @@ Authorization: API-KEY
 Content-Type: application/json
 
 {
-    "titulo": "Marisol",
-    "descripcion": "marisol@gmail.com",
-    "fecha_creacion": "marisol.jpg",
-    "categoria": "marisol.jpg",
-    "autor": "marisol.jpg"
+    "titulo": "Nuevo post agregado",
+    "descripcion": "Este post incluyendo la inteligencia artificial, el aprendizaje automático y la computación en la nube.",
+    "fecha_creacion": "2024-06-01 12:00:00",
+    "categoria": "Tecnología",
+    "autor_id": "3"
 }
 ###
-PUT {{HOST}}/api/posts/16
+PUT {{HOST}}/api/posts/2
 Authorization: API-KEY
 Content-Type: application/json
 
 {
-    "titulo": "Marisol",
-    "descripcion": "marisol@gmail.com",
-    "fecha_creacion": "marisol.jpg",
-    "categoria": "marisol.jpg",
-    "autor": "marisol.jpg"
+    "titulo": "El futuro está aquí: si atendemos a las rutinas diarias",
+    "descripcion": "Este post discute la necesidad de tener rutinas que nos ayuden a mejorar nuestra calidad de vida.",
+    "fecha_creacion": "2024-06-04 13:00:00",
+    "categoria": "Rutinas",
+    "autor_id": "3"
 }
 
 ###
-DELETE {{HOST}}/api/posts/3
+DELETE {{HOST}}/api/posts/18
 Authorization: API-KEY

@@ -11,13 +11,11 @@ const getAllPosts = async (req, res, next) => {
 
 const getPostById = async (req, res, next) => {
   try {
-    const [result] = await Post.selectById(req.params.post_id);
-
-    if (result.length === 0) {
+    const post = await Post.selectById(req.params.post_id);
+    if (!post) {
       return res.status(404).json({ error: "El post no existe" });
     }
-
-    res.json(result[0]);
+    res.json(post);
   } catch (err) {
     next(err);
   }
@@ -26,8 +24,8 @@ const getPostById = async (req, res, next) => {
 const createPost = async (req, res, next) => {
   try {
     const [result] = await Post.insert(req.body);
-    // Como respuesta devolvemos el autor creado
-    const [[post]] = await Post.selectById(result.insertId);
+    // Como respuesta devolvemos el post creado
+    const post = (await Post.selectById(result.insertId))[0];
     res.json(post);
   } catch (err) {
     next(err);
@@ -42,7 +40,7 @@ const updatePost = async (req, res, next) => {
 
     const [result] = await Post.updateById(post_id, req.body);
     if (result.changedRows === 1) {
-      const [[post]] = await Post.selectById(post_id);
+      const post = (await Post.selectById(post_id));
       res.json(post);
     } else {
       res.status(400).json({ error: "Se ha producido un error al actualizar" });

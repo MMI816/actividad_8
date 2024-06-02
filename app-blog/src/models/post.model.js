@@ -1,22 +1,19 @@
 // Funciones con las queries que lanzamos contra la tabla posts
-const selectAll = async () => {
-    try {
-      const [posts] = await db.query(`SELECT p.*, a.nombre AS autor_nombre, a.email AS autor_email
-       FROM posts p
-       INNER JOIN autores a ON p.autorId = a.id`
-    );
-    return posts;
-  } catch (err) {
-    throw err;
-  }
+
+const selectAll = () => {
+  return db.query(`
+      SELECT p.*, a.nombre AS nombre_autor, a.email AS email_autor
+      FROM posts AS p
+      LEFT JOIN autores AS a ON p.autor_id = a.id
+    `);
 };
 
 const selectById = async (postId) => {
   try {
     const [posts] = await db.query(
-      `SELECT p.*, a.nombre AS autor_nombre, a.email AS autor_email
-       FROM posts p
-       INNER JOIN autores a ON p.autorId = a.id
+      `SELECT p.*, a.nombre AS nombre_autor, a.email AS email_autor
+       FROM posts AS p
+       INNER JOIN autores AS a ON p.autor_id = a.id
        WHERE p.id = ?`,
       [postId]
     );
@@ -28,34 +25,40 @@ const selectById = async (postId) => {
 
 // req.body
 // insert(req.body)
-const insert = ({ titulo, descripcion, fecha_creacion, categoria,autorId }) => {
+const insert = ({
+  titulo,
+  descripcion,
+  fecha_creacion,
+  categoria,
+  autor_id,
+}) => {
   return db.query(
-    "insert into posts (titulo, descripcion, fecha_creacion, categoria) values (?, ?, ?, ?)",
-    [titulo, descripcion, fecha_creacion, categoria, autorId]
+    "insert into posts (titulo, descripcion, fecha_creacion, categoria, autor_id) values (?, ?, ?, ?, ?)",
+    [titulo, descripcion, fecha_creacion, categoria, autor_id]
   );
 };
 
-// updateById(5, BODY)
+// updateById(post_id, req.body)
 const updateById = (
   post_id,
-  { titulo, descripcion, fecha_creacion, categoria,autorId }
+  { titulo, descripcion, fecha_creacion, categoria, autor_id }
 ) => {
   return db.query(
     `update posts
-        set titulo = ?, descripcion = ?, fecha_creacion = ?, categoria = ?
+        set titulo = ?, descripcion = ?, fecha_creacion = ?, categoria = ?, autor_id = ?
         where id = ?`,
-    [titulo, descripcion, fecha_creacion, categoria,autorId, post_id]
+    [ titulo, descripcion, fecha_creacion, categoria, autor_id, post_id,]
   );
 };
 
 const deleteById = (post_id) => {
-  return db.query("DELETE FROM paciente WHERE id = ?", [post_id]);
+  return db.query("DELETE FROM posts WHERE id = ?", [post_id]);
 };
 
 module.exports = {
-    selectAll,
-    selectById,
-    insert,
-    updateById,
-    deleteById
+  selectAll,
+  selectById,
+  insert,
+  updateById,
+  deleteById,
 };
